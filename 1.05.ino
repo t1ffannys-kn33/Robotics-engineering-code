@@ -1,22 +1,21 @@
-#define GREEN 3
-#define BLUE 5
-#define RED 6
-#define delayTime 20
+int fade;	
 
-void setup() {
 
-  pinMode(GREEN, OUTPUT);
-  pinMode(BLUE, OUTPUT);
-  pinMode(RED, OUTPUT);
-  digitalWrite(GREEN, HIGH);
-  digitalWrite(BLUE, HIGH);
-  digitalWrite(RED, HIGH);
+void setup()
+{
+	pinMode(5, OUTPUT);	
+	pinMode(6, OUTPUT);		
+	fade = 255;	         
 }
 
-int redVal;
-int blueVal;
-int greenVal;
+void loop()
+{
 
-void loop() {
-    
+
+
+	analogWrite(5, fade);
+	analogWrite(5, (255-fade));
+
+	fade--;	
+	delay(500);
 }
