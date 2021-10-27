@@ -1,1 +1,9 @@
-aa
+void setup()
+{
+pinMode
+}
+
+void loop()
+{
+
+}
