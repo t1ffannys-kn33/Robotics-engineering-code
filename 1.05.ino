@@ -12,9 +12,8 @@ void loop()
 {
 
 
-
-	analogWrite(5, fade);
-	analogWrite(5, (255-fade));
+	analogWrite(9, fade);
+	analogWrite(10, (255-fade));
 
 	fade--;	
 	delay(500);
