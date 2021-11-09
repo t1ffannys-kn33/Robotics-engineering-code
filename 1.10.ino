@@ -19,7 +19,7 @@ void loop() {
   digitalWrite((counter - 1), HIGH);
 
   counter++;
-  if (counter == 6;)
+  if (counter == 6)
   {
     counter = 0;
   }
