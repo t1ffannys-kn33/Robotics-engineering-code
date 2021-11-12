@@ -1,5 +1,5 @@
 {
     "board": "arduino:avr:circuitplay32u4cat",
-    "sketch": "1-03.ino",
+    "sketch": "project2/proj2.ino",
     "port": "COM1"
 }
