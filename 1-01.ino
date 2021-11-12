@@ -1,4 +1,4 @@
-int count = 0;  // variable to count the number of loops
+ int count = 0;  // variable to count the number of loops
 
 void setup()
 {
