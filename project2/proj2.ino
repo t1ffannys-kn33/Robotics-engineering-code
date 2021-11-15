@@ -1,20 +1,28 @@
-int pincount = 9;
+int pintouse = 9;
+bool isactive = false;
 
 void setup()
 {
-    pinMode(12, INPUT);
     Serial.begin(9600);
+    pinMode(12, INPUT);
     pinMode(2, INPUT);
 }
 
 void loop()
 {
 
-    pincount = (pincount % 3) + 9;
+ if (digitalRead(12)== HIGH) {
 
-    if (digitalRead(12) == HIGH)
+ }
+
+
+    if ((digitalRead(2) == HIGH) == isactive)
     {
-        pincount++;
+
+
+    }
+    else
+    {
     }
 
     delay(100);
