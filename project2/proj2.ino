@@ -4,8 +4,15 @@ bool isactive = false;
 void setup()
 {
     Serial.begin(9600);
+
     pinMode(12, INPUT);
     pinMode(2, INPUT);
+    pinMode(A1, INPUT);
+
+    pinMode(9, OUTPUT);
+    pinMode(10, OUTPUT);
+    pinMode(11, OUTPUT);
+    pinMode(12, OUTPUT);
 }
 
 void loop()
@@ -34,11 +41,17 @@ void loop()
         isactive = false;
     }
 
-    if ((digitalRead(2) == HIGH) == isactive)
+    if (isactive)
     {
+        analogWrite(pintouse, analogRead(A1));
     }
     else
     {
+        //turning off all the lights if the switch is off
+        analogWrite(9, 0);
+        analogWrite(10, 0);
+        analogWrite(11, 0);
+        analogWrite(12, 0);
     }
 
     delay(100);
