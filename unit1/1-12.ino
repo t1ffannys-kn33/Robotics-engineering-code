@@ -2,7 +2,7 @@
 const int slidePin = A3;
 const int micPin = A2;	
 
-const int ledPins[5] = {4, 5, 6, 7, 8};
+const int ledPins[3] = {9, 10, 11};
 
 
 void setup()
@@ -11,7 +11,7 @@ void setup()
 	pinMode(micPin, INPUT);
 	
 
-	for (int i=0; i<5; i++)
+	for (int i=0; i<3; i++)
 	{
 
 		pinMode(ledPins[i], OUTPUT);
@@ -23,9 +23,9 @@ void loop()
 	int maximum = analogRead(slidePin);	
 	int micReading = analogRead(micPin);
 	
-	for (int i=0; i<5; i++)
+	for (int i=0; i<3; i++)
 	{
-		if (micReading > ((maximum / 5) * (i+1)))
+		if (micReading > ((maximum / 3) * (i+1)))
 		{
 			digitalWrite(ledPins[i], HIGH);	
 		}
