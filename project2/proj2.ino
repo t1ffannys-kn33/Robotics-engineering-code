@@ -18,7 +18,8 @@ void setup()
 void loop()
 {
 
-    // this whole section is responsiple for checking if the button is pressed and then incrementing the variable if it is.
+    // this whole section is responsiple
+    // for checking if the button is pressed and then incrementing the variable if it is.
     // it also does bounds checking
     if (digitalRead(12) == HIGH)
     {
