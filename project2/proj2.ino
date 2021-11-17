@@ -28,9 +28,15 @@ void loop()
     {
         int brightness = analogRead(A1);
         int slidevalue = analogRead(A3);
-        if (slidevalue < brightness)
+        if (slidevalue < brightness) // if the light is higher then the slide
         {
-            analogWrite(activePin, (brightness/3))
+            analogWrite(activePin, (brightness / 3)); // light the active light accordingly
         }
+    }
+    else // turn off the lights when not on
+    {
+        analogWrite(9, 0);
+        analogWrite(10, 0);
+        analogWrite(11, 0);
     }
 }
