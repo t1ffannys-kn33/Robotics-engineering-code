@@ -44,7 +44,26 @@ void loop()
 
     if (isactive)
     {
-        analogWrite(pintouse, analogRead(A1));
+        int maximum = analogRead();
+        int lightReading = analogRead(A2);
+        if (lightReading < (maximum / 3))
+        {
+
+            if (lightReading < ((maximum / 3)) * 2)
+            {
+
+                if (lightReading > ((maximum / 3) * 2))
+                {
+                    digitalWrite(pintouse, HIGH);
+                    goto ending;
+                }
+                digitalWrite(pintouse, HIGH);
+                goto ending;
+            }
+            digitalWrite(pintouse, HIGH);
+        }
+
+    ending:
     }
     else
     {
