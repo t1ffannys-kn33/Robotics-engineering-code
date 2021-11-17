@@ -30,7 +30,7 @@ void loop()
         int slidevalue = analogRead(A3);
         if (slidevalue < brightness)
         {
-            digitalRead(1);
+            analogWrite(activePin, (brightness/3))
         }
     }
 }
