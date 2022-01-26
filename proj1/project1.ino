@@ -6,25 +6,19 @@
 
 int buttonpin = 12;
 int selectedpin = 0;
-//const int sensorpins[] = { 0, 1, 2, 3 };
 
 void setup()
 {
   Serial.begin(9600);
-  /*
-  for(int i=0; i<=3; i++){
-    pinMode(i, OUTPUT);
-  }
-*/
-pinMode(0, OUTPUT);
-pinMode(1, OUTPUT);
-pinMode(2, OUTPUT);
-pinMode(3, OUTPUT);
+  pinMode(0, INPUT);
+  pinMode(1, INPUT);
+  pinMode(2, INPUT);
+  pinMode(3, INPUT); // all the analog things to read from
 
-pinMode(5, OUTPUT);
+  pinMode(5, OUTPUT); // the one led that gets outputted to
 
-pinMode(12, INPUT);
-pinMode(2, INPUT);
+  pinMode(12, INPUT);// button and switch
+  pinMode(2, INPUT);
 }
 
 void loop()
@@ -32,7 +26,7 @@ void loop()
   // first of all, print the greeting
   Serial.println("Hi! use the push button to pick which sensor to use!");
   do{
-    if (digitalRead(12) == HIGH){
+    if (digitalRead(12) == HIGH){//if the button is on, increment
       selectedpin++;
       Serial.println("youve picked pin "+selectedpin);
       if (selectedpin == 4){ // checking oob
@@ -53,5 +47,5 @@ void loop()
     //this converts the analogRead results 0-1023 to a value that works for analogWrite 0-255
     delay(50);
   } while (digitalRead(2) == LOW); // do that stuff while the switch is still on
+  
 }
-//(1023/5)1.2
