@@ -14,26 +14,13 @@ void setup()
 void blink(int howmanytimes) {
   for(int i = 0; i <= howmanytimes; i++){
     digitalWrite(whiteledpin, HIGH);
-    delay(500);
+    delay(1000);
     digitalWrite(whiteledpin, LOW);
-    delay(500);
+    delay(1000);
   }
 }
 
-void fade(int fromvalues[2], int tovalues[2]){
 
-
-  int incrementby[] = {
-      (fromvalues[0] - tovalues[0])/10,
-      (fromvalues[1] - tovalues[1])/10,
-      (fromvalues[2] - tovalues[2])/10,
-  };
-  // this array holds the diffrances between the from and to colors
-  // we will use this to change the led each tick
-
-  
-
-}
 
 void updateleds(int redvalue, int bluvalue, int grnvalue){
   analogWrite(redledpin, redvalue);
@@ -41,17 +28,32 @@ void updateleds(int redvalue, int bluvalue, int grnvalue){
   analogWrite(grnledpin, grnvalue);
 }
 
-void loop()
-{
-    do{
+void loop(){
+    digitalWrite(whiteledpin, HIGH); // make sure the led is off
+    if(digitalRead(buttonpin)==LOW){
+      delay(1);
+    }
 
-    } while (digitalRead(buttonpin)==LOW);
     digitalWrite(whiteledpin, LOW); // make sure the led is off
 
     for (int i = 0; i < 255; i++) {
-      updateleds(0, (255-i), i); // b to g
+      updateleds(0, 255-i, i); // g to b
       delay(10);
     }
-    
+    blink(2);
 
+    for (int i = 0; i < 255; i++) {
+      updateleds(i, 0, 255-i); // b to r
+      delay(10);
+    }
+    blink(1);
+    
+    for (int i = 0; i < 255; i++) {
+      updateleds(255-i, i, 0); // r to g
+      delay(10);
+    }
+    blink(3);
+
+
+    
 }
