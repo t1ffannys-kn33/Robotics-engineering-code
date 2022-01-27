@@ -19,6 +19,27 @@ void setup()
 
   pinMode(12, INPUT);// button and switch
   pinMode(2, INPUT);
+
+  digitalWrite(4, HIGH); // this does the light show
+  delay(200);
+  digitalWrite(8, HIGH);
+  delay(200);
+  digitalWrite(5, HIGH);
+  delay(200);
+  digitalWrite(7, HIGH);
+  delay(200);
+  digitalWrite(6, HIGH);
+  delay(1000);
+  digitalWrite(6, LOW);
+  delay(200);
+  digitalWrite(7, LOW);
+  delay(200);
+  digitalWrite(5, LOW);
+  delay(200);
+  digitalWrite(8, LOW);
+  delay(200);
+  digitalWrite(4, LOW);
+  delay(200);
 }
 
 void loop()
@@ -28,7 +49,8 @@ void loop()
   do{
     if (digitalRead(12) == HIGH){//if the button is on, increment
       selectedpin++;
-      Serial.println("youve picked pin "+selectedpin);
+      Serial.print("youve picked pin ");
+      Serial.println(selectedpin);
       if (selectedpin == 4){ // checking oob
         selectedpin = 0;
       }
@@ -39,13 +61,27 @@ void loop()
 
   do{
     int analogReadResult = analogRead(selectedpin);
-    Serial.print("the value of pin");
+    Serial.print("the value of pin ");
     Serial.print(selectedpin);
-    Serial.print("is");
-    Serial.print(analogReadResult);
+    Serial.print(" is ");
+
+    if (analogReadResult < 255) {
+      Serial.print("pretty low, the exact value is ");
+    }
+    if ((analogReadResult >= 255)&&(analogReadResult <=511)) {
+      Serial.print("not too high not to low, the exact value is ");
+    }
+    if ((analogReadResult > 511)&&(analogReadResult <=767)) {
+      Serial.print("getting pretty high, the exact value is ");
+    }
+    if (analogReadResult>767) {
+      Serial.print("about as high as it gets, the exact value is ");
+    }
+
+    Serial.println(analogReadResult);
     analogWrite(5, (analogReadResult / 5) * 1.2); 
     //this converts the analogRead results 0-1023 to a value that works for analogWrite 0-255
     delay(50);
-  } while (digitalRead(2) == LOW); // do that stuff while the switch is still on
+  } while (digitalRead(2) == HIGH); // do that stuff while the switch is still on
   
 }
