@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:circuitplay32u4cat",
-    "sketch": "project2/proj2.ino",
+    "sketch": "2nd semester/proj2b/thing.ino",
     "port": "COM1",
     "programmer": "arduino:avrisp"
 }
