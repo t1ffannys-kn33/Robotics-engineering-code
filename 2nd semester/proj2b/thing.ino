@@ -2,8 +2,8 @@
 #define blupin 1
 #define grnpin 2
 
-#define abuzz 3
-#define pbuzz 4
+#define abuzz 4
+#define pbuzz 3
 
 #define buttonpin 2
 
@@ -74,7 +74,7 @@ void loop()
     1 + 1;
   } while (digitalRead(buttonpin) == LOW);
 
-  for (int i = 0; i < 3 i++)
+  for (int i = 0; i < 3; i++)
   {
       Serial.println(questions[i]);
       changeledcolor(3);
@@ -86,7 +86,9 @@ void loop()
        changeledcolor(5);
      }
      else{
-       buzz(false);
+      changeledcolor(1);
+      buzz(false);
+      changeledcolor(3);
      }
   }
   
