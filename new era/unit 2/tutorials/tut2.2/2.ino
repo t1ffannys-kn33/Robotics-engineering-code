@@ -13,6 +13,8 @@ void setup()
 {
   pinMode(buttonPin, INPUT);
   pinMode(redLED, OUTPUT);
+  pinMode(buttonPin2, INPUT);
+  pinMode(redLED2, OUTPUT);
 }
 
 void loop()
@@ -30,15 +32,16 @@ void loop()
     digitalWrite(redLED, LOW);
   }
 
-  if (digitalRead(buttonPin) == HIGH)
+  if (digitalRead(buttonPin2) == HIGH)
   {
-    shouldbeon = !shouldbeon; // if the button is pressed, toggle the bool
+    shouldbeon2 = !shouldbeon2; // if the button is pressed, toggle the bool
   }
-  if (shouldbeon)
+  if (shouldbeon2)
   { // the bool controlls the desired state of the LED, so adjust is accordingly
-    digitalWrite(redLED, HIGH);
+    digitalWrite(redLED2, HIGH);
   }
   else
   {
-    digitalWrite(redLED, LOW);
+    digitalWrite(redLED2, LOW);
   }
+}
