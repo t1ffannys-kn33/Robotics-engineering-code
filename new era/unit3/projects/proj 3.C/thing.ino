@@ -20,14 +20,21 @@ Keypad customKeypad = Keypad(makeKeymap(keypadlayout), rowpins, colpins, 4, 4);
 
 const int RS = 11, EN = 12, D4 = 2, D5 = 3, D6 = 4, D7 = 5;
 LiquidCrystal lcd(RS, EN, D4, D5, D6, D7);
+//
 
+const int redpin = 10, blupin = 11, yellowpin = 12;
 
 
 
 void setup() {
+    pinMode(10, OUTPUT);
+    pinMode(11, OUTPUT);
+    pinMode(12, OUTPUT);
+
     lcd.begin(16, 2); 
     lcd.setCursor(0, 0);
     lcd.print("guessing game");
+    
     
 }
 
