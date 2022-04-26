@@ -19,7 +19,6 @@ Keypad customKeypad = Keypad(makeKeymap(keypadlayout), rowpins, colpins, 4, 4);
 
 const int RS = 11, EN = 12, D4 = 2, D5 = 3, D6 = 4, D7 = 5;
 LiquidCrystal lcd(RS, EN, D4, D5, D6, D7);
-//
 
 const int redpin = 10, blupin = 11, yellowpin = 12;
 
@@ -49,32 +48,55 @@ void setup()
     lcd.begin(16, 2);
     lcd.setCursor(0, 0);
     lcd.print("guessing game");
+    delay(1000);
+    lcd.setCursor(0, 0);
+    lcd.print("                 "); 
+    // my lcd kept doing weird stuff unless i did this
+    // it appears a bunch in my program
 }
 
 void loop()
 {
     char whatspressed = customKeypad.getKey();
-
     if (whatspressed)
     {
-        if (whatspressed == keypadlayout[4][1]) // compare w the secret
+        if (whatspressed == keypadlayout[3][0]) // compare w the secret
         {
             if (checkiscorrect()) // the guess is correct!
             {
-
+                lcd.setCursor(0, 0);
+                lcd.print("correct");
+                blinkLed(blupin);
+                guess = ""; // reset the guess for the next time around
+                delay(1000);
+                lcd.setCursor(0, 0);
+                lcd.print("                 ");
             }
             else // guess is incorrect
             {
+                lcd.setCursor(0, 0);
+                lcd.print("incorrect");
                 blinkLed(redpin);
                 guess = "";
+                delay(1000);
+                lcd.setCursor(0, 0);
+                lcd.print("                 ");
+                lcd.setCursor(0, 0);
+                lcd.print("hint: spell");
+                lcd.setCursor(1, 0);
+                lcd.print("cold in hex");
+                lcd.setCursor(0, 0);
+                lcd.print("                 ");
+                lcd.setCursor(1, 0);
+                lcd.print("                 ");
+                // pray to the library gods this doesnt happen again
             }
         }
         if (whatspressed == keypadlayout[3][0]) // clear the string
         {
-            guess = ""; // reset the guess
+            guess = "";
         }
-        else // append to the guess
-        {
+        else {// its not one of the keys that do smth, so we j append it
             guess.concat(whatspressed);
         }
     }
