@@ -3,7 +3,7 @@
 // 4/24/22
 #include <LiquidCrystal.h>
 #include <Keypad.h>
-const String secret = "1234";
+const String secret = "c01d";
 
 char keypadlayout[4][4] = {
     {'1', '2', '3', 'A'},
@@ -25,6 +25,21 @@ const int redpin = 10, blupin = 11, yellowpin = 12;
 
 String guess = "";
 
+void blinkLed(int pin)
+{
+    digitalWrite(pin, HIGH);
+    delay(1000);
+    digitalWrite(pin, LOW);
+}
+
+bool checkiscorrect()
+{
+    if (strcmp(guess.c_str(), secret.c_str()))
+    {
+        return true;
+    }
+}
+
 void setup()
 {
     pinMode(10, OUTPUT);
@@ -44,19 +59,23 @@ void loop()
     {
         if (whatspressed == keypadlayout[4][1]) // compare w the secret
         {
-            if (secret == guess)
+            if (checkiscorrect()) // the guess is correct!
             {
-                // the guess is correct!
-                
+
+            }
+            else // guess is incorrect
+            {
+                blinkLed(redpin);
+                guess = "";
             }
         }
         if (whatspressed == keypadlayout[3][0]) // clear the string
         {
-            guess = "";
+            guess = ""; // reset the guess
         }
         else // append to the guess
         {
-            guess.concat(whatspressed)
+            guess.concat(whatspressed);
         }
     }
 }
