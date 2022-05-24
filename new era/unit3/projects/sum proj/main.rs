@@ -30,7 +30,7 @@ fn main() -> ! {
   // again, the same thing but with the pin for the button.
   let mut button = pins.d12.into_input()
   let mut buttonison = false;
-
+  // unsigned 8 bit number
   let mut count : u8 = 0;
  
   loop {
@@ -41,6 +41,8 @@ fn main() -> ! {
       if ( ishigh(&button) != buttonison ) {
         
         led.toggle;
+        //this is a bit of a monstor line, but we are printing the result of concatinating the
+        // string toggled! and the count variable. 
         ufmt::uwriteln!(&mut serial, concat!("Toggled!, count is {}\r", count.to_string())).void_unwrap();
         count += 1;
       }
