@@ -6,9 +6,7 @@ use arduino_hal::prelude::*;
 use panic_halt as _;
 use embedded_hal::serial::Read;
  
-fn toggle() -> ! {
-   led.toggle()
-}
+
 #[arduino_hal::entry]
 fn main() -> ! {
   // in rust, we do things a bit differently. We are setting up all the digital
@@ -28,10 +26,14 @@ fn main() -> ! {
   // setting a variable led to the output of pin 13
   let mut led = pins.d13.into_output();
   // again, the same thing but with the pin for the button.
-  let mut button = pins.d12.into_input()
+  let mut button = pins.d12.into_input();
   let mut buttonison = false;
   // unsigned 8 bit number
   let mut count : u8 = 0;
+
+  fn toggle() -> ! {
+    led.toggle()
+ }
  
   loop {
       // set the button variable to the state of the button
