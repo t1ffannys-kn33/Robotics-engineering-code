@@ -1,6 +1,7 @@
 {
-    "board": "arduino:avr:circuitplay32u4cat",
+    "board": "arduino:avr:nano",
     "sketch": "new era\\unit3\\projects\\proj 3.C\\thing.ino",
     "port": "COM1",
-    "programmer": "arduino:avrisp"
+    "programmer": "arduino:avrisp",
+    "configuration": "cpu=atmega328old"
 }
