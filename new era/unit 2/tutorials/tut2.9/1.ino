@@ -1,9 +1,19 @@
-//1.ino
+String thing;
+int age;
 
-void setup() {
-  // put your setup code here, to run once:
+void setup(){
+  Serial.begin(9600);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  Serial.println("Enter your thing??");
+  while(Serial.available()==0) { }
+  thing = Serial.readString();      //readString function collects user’s name
+  if (thing == "3.14") {
+    Serial.println("nice");
+  }
+  else {
+    Serial.println(":(");
+  }
+
 }
