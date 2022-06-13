@@ -5,6 +5,7 @@ void setup()
   pinMode(redLED, OUTPUT);
   pinMode(greenLED, OUTPUT);
   pinMode(blueLED, OUTPUT);
+  pinMode(buttonPin, INPUT);
 }
 
 void loop()
