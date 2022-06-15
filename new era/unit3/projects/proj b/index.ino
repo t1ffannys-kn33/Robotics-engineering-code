@@ -27,6 +27,7 @@ void setup()
     pinMode(10, OUTPUT);
     pinMode(11, OUTPUT);
     pinMode(12, OUTPUT);
+    pinMode(A3, INPUT);
 
 
 }
@@ -65,14 +66,16 @@ void loop()
     for (int i = 0; i < 10; i++)
     {
         PushNumToSSD(phoneNumber[i]);
-        Serial.println(phoneNumber[i]);
-        delay(200);
-        // delay(analogRead(potentpin));
+        delay(analogRead(potentpin));
         // range is 0 to 1023, so thats a nice way to controll how fast to show the nums
     }
+    //turn everything off for next time
         digitalWrite(10, LOW);
         digitalWrite(11, LOW);
-        digitalWrite(12, LOW);}
+        digitalWrite(12, LOW);
+                WriteSegments(1, 1, 1, 1, 0, 0, 1);
+
+        }
 
 
 
@@ -93,75 +96,66 @@ void PushNumToSSD(char number)
     {
     case '0':
     {
-    digitalWrite(2, HIGH);
-    digitalWrite(3, HIGH);
-    digitalWrite(4, HIGH);
-    digitalWrite(5, HIGH);
-    digitalWrite(6, HIGH);
-    digitalWrite(7, HIGH);
-    digitalWrite(8, LOW);
+            WriteSegments(1, 1, 1, 1, 1, 1, 0);
+
     break;
     }
     case '1':
     {
     WriteSegments(0, 1, 1, 0, 0, 0, 0);
-    digitalWrite(2, LOW);
-    digitalWrite(3, HIGH);
-    digitalWrite(4, HIGH);
-    digitalWrite(5, LOW);
-    digitalWrite(6, LOW);
-    digitalWrite(7, LOW);
-    digitalWrite(8, LOW);
+
         break;
 
     }
     case '2':
     {
-    Serial.println("WROTE 2");
-    digitalWrite(2, HIGH);
-    digitalWrite(3, HIGH);
-    digitalWrite(4, LOW);
-    digitalWrite(5, HIGH);
-    digitalWrite(6, HIGH);
-    digitalWrite(7, LOW);
-    digitalWrite(8, HIGH);
+            WriteSegments(1, 1, 0, 1, 1, 0, 1);
+
+
     break;
 
     }
     case '3':
     {
         WriteSegments(1, 1, 1, 1, 0, 0, 1);
-        digitalWrite(2, HIGH);
-        digitalWrite(3, HIGH);
-        digitalWrite(4, HIGH);
-        digitalWrite(5, HIGH);
-        digitalWrite(6, LOW);
-        digitalWrite(7, LOW);
-        digitalWrite(8, HIGH);
+
+                break;
+
     }
     case '4':
     {
         WriteSegments(0, 1, 1, 0, 0, 1, 1);
+        break;
     }
     case '5':
     {
         WriteSegments(1, 0, 1, 1, 0, 1, 1);
+                break;
+
     }
     case '6':
     {
         WriteSegments(1, 0, 1, 1, 1, 1, 1);
+                break;
+
     }
     case '7':
     {
         WriteSegments(1, 1, 1, 0, 0, 0, 0);
+                break;
+
     }
     case '8':
     {
         WriteSegments(1, 1, 1, 1, 1, 1, 1);
+                break;
+
     }
     case '9':
     {
         WriteSegments(1, 1, 1, 1, 0, 1, 1);
+                break;
+
     }
     }
 }
