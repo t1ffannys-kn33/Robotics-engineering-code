@@ -27,22 +27,26 @@ void loop()
     }
     phoneNumber = Serial.readString();
     Serial.println("your number is ");
-    if (phoneNumber[9] == '2' || '4' || '6' || '8')
+    if ((phoneNumber.toInt() % 2 == 0) && (phoneNumber[9] != '0'))
     {
         // note: ^^ needs to be single quoptes as we want to compare chars
         // not const char pointers
         Serial.println("even, so i will light the blue led");
-        turnOnLeds(1);
-    }
-    if (phoneNumber[9] == '1' || '3' || '5' || '7' || '9')
+        digitalWrite(redLedPin, LOW);
+        digitalWrite(bluLedPin, HIGH);
+        digitalWrite(grnLedPin, LOW);    }
+    if (phoneNumber.toInt() % 2 == 1)
     {
         Serial.println("odd, so i will light the red led");
-        turnOnLeds(0);
-    }
+        digitalWrite(redLedPin, HIGH);
+        digitalWrite(bluLedPin, LOW);
+        digitalWrite(grnLedPin, LOW);    }
     if (phoneNumber[9] == '0')
     {
         Serial.println("zero, so i will light the green led");
-        turnOnLeds(2);
+        digitalWrite(redLedPin, LOW);
+        digitalWrite(bluLedPin, LOW);
+        digitalWrite(grnLedPin, HIGH);
     }
     for (int i = 0; i < 10; i++)
     {
@@ -50,40 +54,11 @@ void loop()
         delay(analogRead(potentpin));
         // range is 0 to 1023, so thats a nice way to controll how fast to show the nums
     }
-    turnOnLeds(3);
-}
+        digitalWrite(redLedPin, LOW);
+        digitalWrite(bluLedPin, LOW);
+        digitalWrite(grnLedPin, LOW);}
 
-void turnOnLeds(int input)
-{
-    // 0 for red 1 for blue 2 for green. 3 for all off
-    switch (input)
-    {
-    case 0:
-    {
-        digitalWrite(redLedPin, HIGH);
-        digitalWrite(bluLedPin, LOW);
-        digitalWrite(grnLedPin, LOW);
-    }
-    case 1:
-    {
-        digitalWrite(redLedPin, LOW);
-        digitalWrite(bluLedPin, HIGH);
-        digitalWrite(grnLedPin, LOW);
-    }
-    case 2:
-    {
-        digitalWrite(redLedPin, LOW);
-        digitalWrite(bluLedPin, LOW);
-        digitalWrite(grnLedPin, HIGH);
-    }
-    case 3:
-    {
-        digitalWrite(redLedPin, LOW);
-        digitalWrite(bluLedPin, LOW);
-        digitalWrite(grnLedPin, LOW);
-    }
-    }
-}
+
 
 void WriteSegments(int a, int b, int c, int d, int e, int f, int g)
 {
