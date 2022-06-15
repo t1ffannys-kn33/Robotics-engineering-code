@@ -17,6 +17,18 @@ int SSgPin = 8;
 void setup()
 {
     Serial.begin(9600);
+    pinMode(2, OUTPUT);
+    pinMode(3, OUTPUT);
+    pinMode(4, OUTPUT);
+    pinMode(5, OUTPUT);
+    pinMode(6, OUTPUT);
+    pinMode(7, OUTPUT);
+    pinMode(8, OUTPUT);
+    pinMode(10, OUTPUT);
+    pinMode(11, OUTPUT);
+    pinMode(12, OUTPUT);
+
+
 }
 
 void loop()
@@ -31,44 +43,48 @@ void loop()
     {
         // note: ^^ needs to be single quoptes as we want to compare chars
         // not const char pointers
+        digitalWrite(10, LOW);
+        digitalWrite(11, HIGH);
+        digitalWrite(12, LOW);  
         Serial.println("even, so i will light the blue led");
-        digitalWrite(redLedPin, LOW);
-        digitalWrite(bluLedPin, HIGH);
-        digitalWrite(grnLedPin, LOW);    }
+  
+        }
     if (phoneNumber.toInt() % 2 == 1)
     {
         Serial.println("odd, so i will light the red led");
-        digitalWrite(redLedPin, HIGH);
-        digitalWrite(bluLedPin, LOW);
-        digitalWrite(grnLedPin, LOW);    }
+        digitalWrite(10, HIGH);
+        digitalWrite(11, LOW);
+        digitalWrite(12, LOW);    }
     if (phoneNumber[9] == '0')
     {
         Serial.println("zero, so i will light the green led");
-        digitalWrite(redLedPin, LOW);
-        digitalWrite(bluLedPin, LOW);
-        digitalWrite(grnLedPin, HIGH);
+        digitalWrite(10, LOW);
+        digitalWrite(11, LOW);
+        digitalWrite(12, HIGH);
     }
     for (int i = 0; i < 10; i++)
     {
         PushNumToSSD(phoneNumber[i]);
-        delay(analogRead(potentpin));
+        Serial.println(phoneNumber[i]);
+        delay(200);
+        // delay(analogRead(potentpin));
         // range is 0 to 1023, so thats a nice way to controll how fast to show the nums
     }
-        digitalWrite(redLedPin, LOW);
-        digitalWrite(bluLedPin, LOW);
-        digitalWrite(grnLedPin, LOW);}
+        digitalWrite(10, LOW);
+        digitalWrite(11, LOW);
+        digitalWrite(12, LOW);}
 
 
 
-void WriteSegments(int a, int b, int c, int d, int e, int f, int g)
+void WriteSegments(int aVal, int bVal, int cVal, int dVal, int eVal, int fVal, int gVal)
 {
-    digitalWrite(SSaPin, a);
-    digitalWrite(SSaPin, b);
-    digitalWrite(SSaPin, c);
-    digitalWrite(SSaPin, d);
-    digitalWrite(SSaPin, e);
-    digitalWrite(SSaPin, f);
-    digitalWrite(SSaPin, g);
+    digitalWrite(2, aVal);
+    digitalWrite(3, bVal);
+    digitalWrite(4, cVal);
+    digitalWrite(5, dVal);
+    digitalWrite(6, eVal);
+    digitalWrite(7, fVal);
+    digitalWrite(8, gVal);
 }
 
 void PushNumToSSD(char number)
@@ -77,19 +93,51 @@ void PushNumToSSD(char number)
     {
     case '0':
     {
-        WriteSegments(1, 1, 1, 1, 1, 1, 0);
+    digitalWrite(2, HIGH);
+    digitalWrite(3, HIGH);
+    digitalWrite(4, HIGH);
+    digitalWrite(5, HIGH);
+    digitalWrite(6, HIGH);
+    digitalWrite(7, HIGH);
+    digitalWrite(8, LOW);
+    break;
     }
     case '1':
     {
-        WriteSegments(0, 1, 1, 0, 0, 0, 0);
+    WriteSegments(0, 1, 1, 0, 0, 0, 0);
+    digitalWrite(2, LOW);
+    digitalWrite(3, HIGH);
+    digitalWrite(4, HIGH);
+    digitalWrite(5, LOW);
+    digitalWrite(6, LOW);
+    digitalWrite(7, LOW);
+    digitalWrite(8, LOW);
+        break;
+
     }
     case '2':
     {
-        WriteSegments(1, 1, 0, 1, 1, 0, 1);
+    Serial.println("WROTE 2");
+    digitalWrite(2, HIGH);
+    digitalWrite(3, HIGH);
+    digitalWrite(4, LOW);
+    digitalWrite(5, HIGH);
+    digitalWrite(6, HIGH);
+    digitalWrite(7, LOW);
+    digitalWrite(8, HIGH);
+    break;
+
     }
     case '3':
     {
         WriteSegments(1, 1, 1, 1, 0, 0, 1);
+        digitalWrite(2, HIGH);
+        digitalWrite(3, HIGH);
+        digitalWrite(4, HIGH);
+        digitalWrite(5, HIGH);
+        digitalWrite(6, LOW);
+        digitalWrite(7, LOW);
+        digitalWrite(8, HIGH);
     }
     case '4':
     {
