@@ -33,6 +33,6 @@ void loop()
         Serial.print(potentRead);
         Serial.print(", Color: ");
         Serial.println(rainbow[colorindex]);
-
+    // this works because there is a time difference between the first line and this expressions being evaluated
     } while (potentRead != analogRead(potentPin));
 }
