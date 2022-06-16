@@ -1,25 +1,32 @@
-#define redpin 0
-#define blupin 1
-#define grnpin 2
+#define redpin 10
+#define blupin 11
+#define grnpin 12
 
 #define abuzz 4
 #define pbuzz 3
 
-#define buttonpin 2
+#define buttonpin 7
 
 int c = 262, d = 294, e = 330, f = 349;
 int g = 392, a = 440, b = 494, C = 523;
 
 int yankeedoodle[] = {c,c,d,e,c,e,d,};
 
-d3S86aUlDEHa
+
 String questions[3] = {"Swift won her first grammy for which song?",
                        "Swifts cats last name starting with Meredith", "Swifts alma mater is"};
 String answers[3] = {"White Horse", "Grey", "Notre Dame"};
 
-void
-setup()
+String input;
+
+void setup()
 {
+  pinMode(7, INPUT);
+
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(12, OUTPUT);
+
   Serial.begin(9600);
 }
 // 1 is red 2 is grn 3 is blu
@@ -79,8 +86,8 @@ void loop()
       Serial.println(questions[i]);
       changeledcolor(3);
       while (Serial.available()<2){}
-
-     if(Serial.readString() == answers[i]){
+      input = Serial.readString();
+     if(input == answers[i]){
        changeledcolor(2);
        buzz(true);
        changeledcolor(5);

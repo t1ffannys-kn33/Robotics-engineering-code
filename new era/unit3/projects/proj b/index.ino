@@ -73,7 +73,7 @@ void loop()
         digitalWrite(10, LOW);
         digitalWrite(11, LOW);
         digitalWrite(12, LOW);
-                WriteSegments(1, 1, 1, 1, 0, 0, 1);
+                WriteSegments(0, 0, 0, 0, 0, 0, 0);
 
         }
 
