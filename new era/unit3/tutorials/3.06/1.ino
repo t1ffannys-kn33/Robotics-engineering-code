@@ -1,38 +1,34 @@
-// Your Name
-// Your Robotics Course Section
-// Title (Name of Tutorial/Project)
-// Description: Restate the purpose of the program in your own words
-// Date Started - Date Completed
+#include <Keypad.h>
 
-int potentPin = A3, potentRead, colorindex;
+const byte ROWS = 4; 
+const byte COLS = 4; 
 
-// an array of characters is styled as a string
-char rainbow[] = "ROYGBIV";
+//declare an array of characters with 4 rows and 3 columns
+char hexaKeys[ROWS][COLS] = {
+  {'1', '2', '3', 'A'},
+  {'4', '5', '6', 'B'},
+  {'7', '8', '9', 'C'},
+  {'*', '0', '#', 'D'}
+};
 
-void setup()
-{
-    pinMode(potentPin, INPUT);
-    Serial.begin(9600);
+//assign the row and column pins on the Arduino
+byte rowPins[ROWS] = {9, 8, 7, 6}; 
+byte colPins[COLS] = {5, 4, 3, 2}; 
+
+//declare a keypad that aligns the hexakey matrix with the pin arrays
+Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS); 
+
+void setup(){
+  Serial.begin(9600);
 }
 
-void loop()
-{
+void loop(){
 
-    do
-    {
-        /* code */
-
-        // set potentRead to values inputted from potentiometer
-        potentRead = analogRead(potentPin);
-
-        // convert potentiometer reading range 0-1023 to available indexes from rainbow.
-        colorindex = map(potentRead, 0, 1023, 0, 6);
-
-        // prints the raw values and the color with index mapped to potentiometer
-        Serial.print("Potentiometer value: ");
-        Serial.print(potentRead);
-        Serial.print(", Color: ");
-        Serial.println(rainbow[colorindex]);
-    // this works because there is a time difference between the first line and this expressions being evaluated
-    } while (potentRead != analogRead(potentPin));
+  //sets variable customKey to a reading from the Keypad
+  char customKey = customKeypad.getKey();
+  
+  //if the keypad is pressed, print the pressed key
+  if (customKey){
+    Serial.println(customKey);
+  }
 }
