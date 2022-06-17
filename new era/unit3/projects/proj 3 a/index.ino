@@ -15,14 +15,14 @@ String selectedcolor;
 void setup()
 {
     Serial.begin(9600);
-    pinmode(photoresistpin, INPUT);
-    pinmode(potentpin, INPUT);
+    pinMode(photoresistpin, INPUT);
+    pinMode(potentpin, INPUT);
 
-    pinmode(blupin, OUTPUT);
-    pinmode(redpin, OUTPUT);
-    pinmode(ylwpin, OUTPUT);
+    pinMode(blupin, OUTPUT);
+    pinMode(redpin, OUTPUT);
+    pinMode(ylwpin, OUTPUT);
 
-    pinmode(buttonPin, INPUT)
+    pinMode(buttonPin, INPUT);
 }
 
 int calcLed(int pin)
@@ -31,7 +31,7 @@ int calcLed(int pin)
     {
         if (pin == 0)
         {
-            return (map(analogRead(potentpin), 0, 1023, 0, 255));
+            return (map(analogRead(potentpin), 0, 720, 0, 255));
         }
         else
         {
@@ -42,7 +42,7 @@ int calcLed(int pin)
     {
         if (pin == 1)
         {
-            return (map(analogRead(potentpin), 0, 1023, 0, 255));
+            return (map(analogRead(potentpin), 0, 720, 0, 255));
         }
         else
         {
@@ -53,7 +53,7 @@ int calcLed(int pin)
     {
         if (pin == 2)
         {
-            return (map(analogRead(potentpin), 0, 1023, 0, 255));
+            return (map(analogRead(potentpin), 0, 720, 0, 255));
         }
         else
         {
@@ -71,7 +71,7 @@ void turnOffAllLeds()
 
 void loop()
 {
-    if (analogRead(photoresistpin) < 500)
+    if (analogRead(photoresistpin) < 40)
     {
         analogWrite(blupin, calcLed(0));
         analogWrite(redpin, calcLed(1));
