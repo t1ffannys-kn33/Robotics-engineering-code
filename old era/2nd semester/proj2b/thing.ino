@@ -35,24 +35,24 @@ void changeledcolor(int x){
   switch (x)
   {
   case 1:
-    analogWrite(redpin, 255);
-    analogWrite(grnpin, 0);
-    analogWrite(blupin, 0);
+    digitalWrite(redpin, 1);
+    digitalWrite(grnpin, 0);
+    digitalWrite(blupin, 0);
     break;
   case 2:
-    analogWrite(redpin, 0);
-    analogWrite(grnpin, 255);
-    analogWrite(blupin, 0);
+    digitalWrite(redpin, 0);
+    digitalWrite(grnpin, 1);
+    digitalWrite(blupin, 0);
     break;
   case 3:
-    analogWrite(redpin, 0);
-    analogWrite(grnpin, 0);
-    analogWrite(blupin, 255);
+    digitalWrite(redpin, 0);
+    digitalWrite(grnpin, 0);
+    digitalWrite(blupin, 1);
     break;
   default:
-    analogWrite(redpin, 0);
-    analogWrite(grnpin, 0);
-    analogWrite(blupin, 0);
+    digitalWrite(redpin, 0);
+    digitalWrite(grnpin, 0);
+    digitalWrite(blupin, 0);
     break;
   }
 
