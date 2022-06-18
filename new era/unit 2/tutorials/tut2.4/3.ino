@@ -10,24 +10,24 @@ void setup()
 
 void loop()
 {
-  Serial.println("aaa")
-  while(digitalRead(buttonPin) == HIGH){  }
+  while(digitalRead(buttonPin) == HIGH){  
   for (int i = 0; i < 255; i++) // blue -> red
   {
     RGBwrite(i, 255-i, 0);
     delay(50);
   }
-  while(digitalRead(buttonPin) == HIGH){  }
+  
   for (int i = 0; i < 255; i++) // red ->green
   {
     RGBwrite(255-i, 0, i);
     delay(50);
   }
-  while(digitalRead(buttonPin) == HIGH){  }
+  
   for (int i = 0; i < 255; i++) // green -> blue
   {
     RGBwrite(0, 255-i, i);
     delay(50);
+  }
   }
 }
 void RGBwrite(int r, int g, int b)
